@@ -1,0 +1,16 @@
+[Unit]
+Description=Temperature Monitor Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python -u /home/cwelch/temp_sensor/temperature_sensor_internal.py
+WorkingDirectory=/home/cwelch/temp_sensor
+User=cwelch
+EnvironmentFile=/home/cwelch/temp_sensor/.env
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
